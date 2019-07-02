@@ -44,7 +44,7 @@
     $(document).ready(function () {
       function getCats() {
         var catTable = $("<tbody>");
-        let titleRow = $('<tr>');
+        let titleRow = $('<tr>').attr("class", "titleTag");
         $('<td>NAME</td>').appendTo(titleRow);
         $('<td>AGE</td>').appendTo(titleRow);
         $('<td>SHOTS</td>').appendTo(titleRow);
