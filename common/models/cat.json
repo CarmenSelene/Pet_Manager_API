@@ -1,0 +1,33 @@
+{
+  "name": "cat",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "age": {
+      "type": "number",
+      "required": true
+    },
+    "shots": {
+      "type": "boolean",
+      "required": true,
+      "default": false
+    },
+    "notes": {
+      "type": "string"
+    },
+    "breed": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

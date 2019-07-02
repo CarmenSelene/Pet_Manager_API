@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  </link>
+</head>
+
+<body>
+  <div class="mainBody">
+    <table style="width:100%;padding:10px;margin:10px;">
+      <tr>
+        <td style="width:46%;padding:0px;margin:0px;text-align:center;">
+          <h1>Register A Cat</h1>
+          <form action="" id="addcat">
+            Name:<br>
+            <input type="text" name="name" value="name">
+            <br><br>Age:<br>
+            <input type="text" name="age" value="0">
+            <br><br>Had Shots:<br>
+            <input type="boolean" name="shots" value="false">
+            <br><br>Breed:<br>
+            <input type="text" name="breed" value="type">
+            <br><br>Notes:<br>
+            <input type="text" name="notes" value="notes">
+            <br><br>
+            <input type="submit" value="Submit">
+          </form><br><br><br>
+          <img src="./dog-cartoon-emoji-emoticon-smiley-face-020-512.png" alt="woof woof" id="mascot">
+        </td>
+        <td style="width:46%;padding:0px;margin:0px;text-align:center;">
+          <h1>Registered Cats</h1>
+          <table class="currentCats">
+          </table>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      function getCats() {
+        var catTable = $("<tbody>");
+        let titleRow = $('<tr>');
+        $('<td>NAME</td>').appendTo(titleRow);
+        $('<td>AGE</td>').appendTo(titleRow);
+        $('<td>SHOTS</td>').appendTo(titleRow);
+        $('<td>BREED</td>').appendTo(titleRow);
+        $('<td>NOTES</td>').appendTo(titleRow);
+        $(catTable).append(titleRow);
+        axios.get('/api/cats')
+          .then(function (response) {
+            let eachCat = response.data;
+            eachCat.forEach(element => {
+              var eachCatTable = $("<tr>");
+              let name = element.name;
+              let age = element.age;
+              let shots = element.shots;
+              let breed = element.breed;
+              let notes = element.notes;
+              $('<td class="nameTag">' + name + '</td>').appendTo(eachCatTable);
+              $('<td>' + age + '</td>').appendTo(eachCatTable);
+              $('<td>' + shots + '</td>').appendTo(eachCatTable);
+              $('<td>' + breed + '</td>').appendTo(eachCatTable);
+              $('<td>' + notes + '</td>').appendTo(eachCatTable);
+              $(catTable).append(eachCatTable);
+              $(".currentCats").append(catTable);
+            });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      };
+      getCats();
+      $("form").submit(function () {
+        let name = this.name.value;
+        let age = parseInt(this.age.value);
+        let shots = this.shots.value;
+        let breed = this.breed.value;
+        let notes = this.notes.value;
+        axios.post('/api/cats', {
+          name: name,
+          age: age,
+          shots: shots,
+          notes: notes,
+          breed: breed
+        })
+          .then(function (response) {
+            getCats();
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      });
+    });</script>
+
+</body>
+
+</html>

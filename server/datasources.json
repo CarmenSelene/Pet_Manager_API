@@ -1,0 +1,14 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "file": "productionTempFileStorage"
+  },
+  "mymongo": {
+    "name": "mymongo",
+    "host": "localhost",
+    "port": 27017,
+    "database": "loopbacktest",
+    "connector": "mongodb"
+  }
+}
