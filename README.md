@@ -6,7 +6,7 @@ Pet Manager uses Loopback-API and MongoDB to create a simple pet registration sy
 2. Node.js setup/installed
 
 ### Instructions:
-1. cd to folder in bash/console
+1. CD to folder project folder in bash/console
 2. Run "NPM install"
 3. Run "Mongod" (in seperate console)
 4. Run "node ."
