@@ -48,6 +48,12 @@ td {
     text-shadow: white 0.5px;
     }
 
+.catsCheckbox {
+    display: inline;
+    margin: auto;
+    padding: 0px;
+    }
+
 #mascot {
     height: auto;
     width: 50%;
